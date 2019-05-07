@@ -1,0 +1,254 @@
+{
+    "type": "object",
+    "properties": {
+        "spreadsheetId": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The request for updating more than one range of values in a spreadsheet.",
+            "properties": {
+                "data": {
+                    "description": "The new values to apply to the spreadsheet.  If more than one range is\nmatched by the specified DataFilter the specified values will be\napplied to all of those ranges.",
+                    "items": {
+                        "description": "A range of values whose location is specified by a DataFilter.",
+                        "properties": {
+                            "dataFilter": {
+                                "description": "The data filter describing the location of the values in the spreadsheet.",
+                                "properties": {
+                                    "a1Range": {
+                                        "description": "Selects data that matches the specified A1 range.",
+                                        "type": "string"
+                                    },
+                                    "developerMetadataLookup": {
+                                        "description": "Selects data associated with the developer metadata matching the criteria\ndescribed by this DeveloperMetadataLookup.",
+                                        "properties": {
+                                            "locationMatchingStrategy": {
+                                                "description": "Determines how this lookup matches the location.  If this field is\nspecified as EXACT, only developer metadata associated on the exact\nlocation specified is matched.  If this field is specified to INTERSECTING,\ndeveloper metadata associated on intersecting locations is also\nmatched.  If left unspecified, this field assumes a default value of\nINTERSECTING.\nIf this field is specified, a metadataLocation\nmust also be specified.",
+                                                "enum": [
+                                                    "DEVELOPER_METADATA_LOCATION_MATCHING_STRATEGY_UNSPECIFIED",
+                                                    "EXACT_LOCATION",
+                                                    "INTERSECTING_LOCATION"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "locationType": {
+                                                "description": "Limits the selected developer metadata to those entries which are\nassociated with locations of the specified type.  For example, when this\nfield is specified as ROW this lookup\nonly considers developer metadata associated on rows.  If the field is left\nunspecified, all location types are considered.  This field cannot be\nspecified as SPREADSHEET when\nthe locationMatchingStrategy\nis specified as INTERSECTING or when the\nmetadataLocation is specified as a\nnon-spreadsheet location: spreadsheet metadata cannot intersect any other\ndeveloper metadata location.  This field also must be left unspecified when\nthe locationMatchingStrategy\nis specified as EXACT.",
+                                                "enum": [
+                                                    "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
+                                                    "ROW",
+                                                    "COLUMN",
+                                                    "SHEET",
+                                                    "SPREADSHEET"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "metadataId": {
+                                                "description": "Limits the selected developer metadata to that which has a matching\nDeveloperMetadata.metadata_id.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            },
+                                            "metadataKey": {
+                                                "description": "Limits the selected developer metadata to that which has a matching\nDeveloperMetadata.metadata_key.",
+                                                "type": "string"
+                                            },
+                                            "metadataLocation": {
+                                                "description": "Limits the selected developer metadata to those entries associated with\nthe specified location.  This field either matches exact locations or all\nintersecting locations according the specified\nlocationMatchingStrategy.",
+                                                "properties": {
+                                                    "dimensionRange": {
+                                                        "description": "Represents the row or column when metadata is associated with\na dimension. The specified DimensionRange must represent a single row\nor column; it cannot be unbounded or span multiple rows or columns.",
+                                                        "properties": {
+                                                            "dimension": {
+                                                                "description": "The dimension of the span.",
+                                                                "enum": [
+                                                                    "DIMENSION_UNSPECIFIED",
+                                                                    "ROWS",
+                                                                    "COLUMNS"
+                                                                ],
+                                                                "type": "string"
+                                                            },
+                                                            "endIndex": {
+                                                                "description": "The end (exclusive) of the span, or not set if unbounded.",
+                                                                "format": "int32",
+                                                                "type": "integer"
+                                                            },
+                                                            "sheetId": {
+                                                                "description": "The sheet this span is on.",
+                                                                "format": "int32",
+                                                                "type": "integer"
+                                                            },
+                                                            "startIndex": {
+                                                                "description": "The start (inclusive) of the span, or not set if unbounded.",
+                                                                "format": "int32",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "locationType": {
+                                                        "description": "The type of location this object represents.  This field is read-only.",
+                                                        "enum": [
+                                                            "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
+                                                            "ROW",
+                                                            "COLUMN",
+                                                            "SHEET",
+                                                            "SPREADSHEET"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "sheetId": {
+                                                        "description": "The ID of the sheet when metadata is associated with an entire sheet.",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    },
+                                                    "spreadsheet": {
+                                                        "description": "True when metadata is associated with an entire spreadsheet.",
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "metadataValue": {
+                                                "description": "Limits the selected developer metadata to that which has a matching\nDeveloperMetadata.metadata_value.",
+                                                "type": "string"
+                                            },
+                                            "visibility": {
+                                                "description": "Limits the selected developer metadata to that which has a matching\nDeveloperMetadata.visibility.  If left unspecified, all developer\nmetadata visibile to the requesting project is considered.",
+                                                "enum": [
+                                                    "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED",
+                                                    "DOCUMENT",
+                                                    "PROJECT"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "gridRange": {
+                                        "description": "Selects data that matches the range described by the GridRange.",
+                                        "properties": {
+                                            "endColumnIndex": {
+                                                "description": "The end column (exclusive) of the range, or not set if unbounded.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            },
+                                            "endRowIndex": {
+                                                "description": "The end row (exclusive) of the range, or not set if unbounded.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            },
+                                            "sheetId": {
+                                                "description": "The sheet this range is on.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            },
+                                            "startColumnIndex": {
+                                                "description": "The start column (inclusive) of the range, or not set if unbounded.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            },
+                                            "startRowIndex": {
+                                                "description": "The start row (inclusive) of the range, or not set if unbounded.",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "majorDimension": {
+                                "description": "The major dimension of the values.",
+                                "enum": [
+                                    "DIMENSION_UNSPECIFIED",
+                                    "ROWS",
+                                    "COLUMNS"
+                                ],
+                                "type": "string"
+                            },
+                            "values": {
+                                "description": "The data to be written.  If the provided values exceed any of the ranges\nmatched by the data filter then the request will fail.  If the provided\nvalues are less than the matched ranges only the specified values will be\nwritten, existing values in the matched ranges will remain unaffected.",
+                                "items": {
+                                    "items": {},
+                                    "type": "array"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "includeValuesInResponse": {
+                    "description": "Determines if the update response should include the values\nof the cells that were updated. By default, responses\ndo not include the updated values. The `updatedData` field within\neach of the BatchUpdateValuesResponse.responses will contain\nthe updated values. If the range to write was larger than than the range\nactually written, the response will include all values in the requested\nrange (excluding trailing empty rows and columns).",
+                    "type": "boolean"
+                },
+                "responseDateTimeRenderOption": {
+                    "description": "Determines how dates, times, and durations in the response should be\nrendered. This is ignored if response_value_render_option is\nFORMATTED_VALUE.\nThe default dateTime render option is\nDateTimeRenderOption.SERIAL_NUMBER.",
+                    "enum": [
+                        "SERIAL_NUMBER",
+                        "FORMATTED_STRING"
+                    ],
+                    "type": "string"
+                },
+                "responseValueRenderOption": {
+                    "description": "Determines how values in the response should be rendered.\nThe default render option is ValueRenderOption.FORMATTED_VALUE.",
+                    "enum": [
+                        "FORMATTED_VALUE",
+                        "UNFORMATTED_VALUE",
+                        "FORMULA"
+                    ],
+                    "type": "string"
+                },
+                "valueInputOption": {
+                    "description": "How the input data should be interpreted.",
+                    "enum": [
+                        "INPUT_VALUE_OPTION_UNSPECIFIED",
+                        "RAW",
+                        "USER_ENTERED"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

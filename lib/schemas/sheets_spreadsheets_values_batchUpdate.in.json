@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "properties": {
+        "spreadsheetId": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The request for updating more than one range of values in a spreadsheet.",
+            "properties": {
+                "data": {
+                    "description": "The new values to apply to the spreadsheet.",
+                    "items": {
+                        "description": "Data within a range of the spreadsheet.",
+                        "properties": {
+                            "majorDimension": {
+                                "description": "The major dimension of the values.\n\nFor output, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`,\nthen requesting `range=A1:B2,majorDimension=ROWS` will return\n`[[1,2],[3,4]]`,\nwhereas requesting `range=A1:B2,majorDimension=COLUMNS` will return\n`[[1,3],[2,4]]`.\n\nFor input, with `range=A1:B2,majorDimension=ROWS` then `[[1,2],[3,4]]`\nwill set `A1=1,B1=2,A2=3,B2=4`. With `range=A1:B2,majorDimension=COLUMNS`\nthen `[[1,2],[3,4]]` will set `A1=1,B1=3,A2=2,B2=4`.\n\nWhen writing, if this field is not set, it defaults to ROWS.",
+                                "enum": [
+                                    "DIMENSION_UNSPECIFIED",
+                                    "ROWS",
+                                    "COLUMNS"
+                                ],
+                                "type": "string"
+                            },
+                            "range": {
+                                "description": "The range the values cover, in A1 notation.\nFor output, this range indicates the entire requested range,\neven though the values will exclude trailing rows and columns.\nWhen appending values, this field represents the range to search for a\ntable, after which values will be appended.",
+                                "type": "string"
+                            },
+                            "values": {
+                                "description": "The data that was read or to be written.  This is an array of arrays,\nthe outer array representing all the data and each inner array\nrepresenting a major dimension. Each item in the inner array\ncorresponds with one cell.\n\nFor output, empty trailing rows and columns will not be included.\n\nFor input, supported value types are: bool, string, and double.\nNull values will be skipped.\nTo set a cell to an empty value, set the string value to an empty string.",
+                                "items": {
+                                    "items": {},
+                                    "type": "array"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "includeValuesInResponse": {
+                    "description": "Determines if the update response should include the values\nof the cells that were updated. By default, responses\ndo not include the updated values. The `updatedData` field within\neach of the BatchUpdateValuesResponse.responses will contain\nthe updated values. If the range to write was larger than than the range\nactually written, the response will include all values in the requested\nrange (excluding trailing empty rows and columns).",
+                    "type": "boolean"
+                },
+                "responseDateTimeRenderOption": {
+                    "description": "Determines how dates, times, and durations in the response should be\nrendered. This is ignored if response_value_render_option is\nFORMATTED_VALUE.\nThe default dateTime render option is\nDateTimeRenderOption.SERIAL_NUMBER.",
+                    "enum": [
+                        "SERIAL_NUMBER",
+                        "FORMATTED_STRING"
+                    ],
+                    "type": "string"
+                },
+                "responseValueRenderOption": {
+                    "description": "Determines how values in the response should be rendered.\nThe default render option is ValueRenderOption.FORMATTED_VALUE.",
+                    "enum": [
+                        "FORMATTED_VALUE",
+                        "UNFORMATTED_VALUE",
+                        "FORMULA"
+                    ],
+                    "type": "string"
+                },
+                "valueInputOption": {
+                    "description": "How the input data should be interpreted.",
+                    "enum": [
+                        "INPUT_VALUE_OPTION_UNSPECIFIED",
+                        "RAW",
+                        "USER_ENTERED"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

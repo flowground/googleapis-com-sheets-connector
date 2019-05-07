@@ -1,0 +1,55 @@
+{
+    "type": "object",
+    "properties": {
+        "dateTimeRenderOption": {
+            "type": "string",
+            "enum": [
+                "SERIAL_NUMBER",
+                "FORMATTED_STRING"
+            ]
+        },
+        "majorDimension": {
+            "type": "string",
+            "enum": [
+                "DIMENSION_UNSPECIFIED",
+                "ROWS",
+                "COLUMNS"
+            ]
+        },
+        "range": {
+            "required": true,
+            "type": "string"
+        },
+        "spreadsheetId": {
+            "required": true,
+            "type": "string"
+        },
+        "valueRenderOption": {
+            "type": "string",
+            "enum": [
+                "FORMATTED_VALUE",
+                "UNFORMATTED_VALUE",
+                "FORMULA"
+            ]
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        }
+    }
+}
